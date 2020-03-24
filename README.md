@@ -3,7 +3,7 @@
 
 # installation
 ```
-git clone
+git clone https://github.com/mannjaro/dotfiles.git
 cd ~/.dotfiles
 bash ./startup.sh
 ```
