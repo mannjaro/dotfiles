@@ -1,0 +1,13 @@
+[[plugins]]
+repo = 'Shougo/deoplate.nvim'
+hook_add = 'let g:deoplate#enable_at_startup=1'
+[[plugins]]
+repo = 'Shougo/dein.vim'
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['/vim-airline-themes']
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
