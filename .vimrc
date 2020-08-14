@@ -16,9 +16,9 @@ nnoremap j gj
 nnoremap k gk
 set wrap
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
-set tabstop=4
+set tabstop=2
 set ignorecase
 set smartcase
 set incsearch
