@@ -1,7 +1,4 @@
 [[plugins]]
-repo = 'Shougo/deoplate.nvim'
-hook_add = 'let g:deoplate#enable_at_startup=1'
-[[plugins]]
 repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
