@@ -3,5 +3,5 @@
 ## Usage
 
 ```sh
-curl -fsSL https://github.com/mannjaro/dotfiles/setup.sh | sh
+curl -fsSL https://raw.githubusercontent.com/mannjaro/dotfiles/main/setup.sh | sh
 ```

@@ -25,8 +25,6 @@ fi
 echo "Brew install packages"
 brew bundle --global
 
-bw login --quiet "takuson2525zt@gmail.com" $BW_PASS
-
 echo "Clone dotfiles..."
 chezmoi init https://github.com/mannjaro/dotfiles && chezmoi -v apply
 
