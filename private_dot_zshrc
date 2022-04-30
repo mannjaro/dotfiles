@@ -1,0 +1,35 @@
+# Enable starship
+eval "$(starship init zsh)"
+
+export LANG=ja_JP.UTF-8
+
+# 色を使用出来るようにする
+autoload -Uz colors &&  colors
+
+# export LSCOLORS=cxfxcxdxbxegedabagacad
+
+alias ls='ls -GF'
+alias ll='ls -lGF'
+alias la='ls -alGF'
+
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
+    autoload -Uz compinit
+    compinit
+fi
+
+## Can suggest upper and lower case
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+## Complentions can select cursor key
+zstyle ':completion:*:default' menu select=1
+
+## can cd without 'cd'
+setopt AUTO_CD
+
+## cd and ls
+chpwd() {
+  if [[ $(pwd) != $HOME ]]; then;
+      ls
+        fi
+}

@@ -1,0 +1,56 @@
+Host fab_web
+    HostName www.monodukuri.kit.ac.jp
+    User mannjaro
+    Port 22
+    IdentityFile ~/.ssh/manjaro_rsa
+
+Host rpi
+    HostName 192.168.11.27
+    User pi
+    Port 22
+    IdentityFile ~/.ssh/rpi_key
+
+Host puffer
+    HostName se.is.kit.ac.jp
+    ControlMaster auto
+    ControlPersist 10m
+
+Host ayu
+    HostName ayu.se.is.kit.ac.jp
+    ProxyJump puffer
+
+# 2020年現在停止中
+# Host trout
+#     HostName trout.se.is.kit.ac.jp
+#     ProxyJump puffer
+
+Host salmon
+    HostName salmon.se.is.kit.ac.jp
+    ProxyJump puffer
+
+Host saury
+    HostName saury.se.is.kit.ac.jp
+    ProxyJump puffer
+
+Host lobster
+    HostName lobster.se.is.kit.ac.jp
+    ProxyJump puffer
+
+Host tuna
+    HostName tuna.se.is.kit.ac.jp
+    ProxyJump puffer
+
+Host sel # ← just an identifier
+    HostName se.is.kit.ac.jp
+    User t-zukawa
+    GatewayPorts no
+    DynamicForward 1080
+    ServerAliveInterval 60
+
+Host *
+    User t-zukawa
+    ServerAliveInterval 300
+    IdentityFile ~/.ssh/sl_key
+    # Macの場合は以下の記述をしておくことでssh keyのパスフレーズ入力を初回以外スキップできる
+    UseKeychain yes
+    AddKeysToAgent yes
