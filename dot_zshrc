@@ -14,8 +14,6 @@ alias la='ls -alGF'
 
 if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
-    autoload -Uz compinit
-    compinit
 fi
 
 ## Can suggest upper and lower case
@@ -30,6 +28,6 @@ setopt AUTO_CD
 ## cd and ls
 chpwd() {
   if [[ $(pwd) != $HOME ]]; then;
-      ls
-        fi
+    ls
+  fi
 }

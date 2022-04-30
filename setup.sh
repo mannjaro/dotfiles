@@ -22,12 +22,21 @@ if [ ! -f /opt/homebrew/bin/chezmoi ]
 		echo "chezmoi already installed."
 fi
 
-echo "Clone dotfiles..."
-chezmoi init https://github.com/mannjaro/dotfiles && chezmoi apply
-
 echo "Brew install packages"
 brew bundle --global
 
-echo "Install ZIM"
-curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+bw login --quiet "takuson2525zt@gmail.com" $BW_PASS
 
+echo "Clone dotfiles..."
+chezmoi init https://github.com/mannjaro/dotfiles && chezmoi -v apply
+
+bw logout
+
+echo "Install ZIM"
+if [ ! ~/.zim ]
+	then
+		echo "Install ZIM..."
+		curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+	else
+		echo "ZIM already installed."
+fi
