@@ -28,8 +28,6 @@ brew bundle --global
 echo "Clone dotfiles..."
 chezmoi init https://github.com/mannjaro/dotfiles && chezmoi -v apply
 
-bw logout
-
 echo "Install ZIM"
 if [ ! ~/.zim ]
 	then
