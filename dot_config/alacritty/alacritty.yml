@@ -7,9 +7,9 @@ window:
     x: 8
     y: 4
 
-  opacity: 0.8
+  opacity: 1
 
-  startup_mode: SimpleFullscreen
+  startup_mode: Fullscreen 
 
 cursor:
   style:
