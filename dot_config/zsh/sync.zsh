@@ -1,5 +1,8 @@
 eval "$(starship init zsh)"
 
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+
 setopt auto_cd
 setopt auto_menu
 setopt correct
