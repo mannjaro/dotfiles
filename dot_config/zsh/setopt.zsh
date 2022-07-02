@@ -5,4 +5,4 @@ setopt correct
 setopt magic_equal_subst
 setopt nobeep
 setopt nolistbeep
-
+setopt share_history
