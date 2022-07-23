@@ -8,3 +8,6 @@ alias ..="cd ../"
 alias ...="cd ../../"
 alias ../="cd ../"
 alias .../="cd ../../"
+
+alias grep="rg"
+alias cat="bat"
