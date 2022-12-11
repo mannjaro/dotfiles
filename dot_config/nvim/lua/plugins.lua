@@ -1,8 +1,61 @@
-vim.cmd([[packadd packer.nvim]])
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+vim.cmd [[packadd packer.nvim]]
+
+require('packer').init {
+  display = {
+    open_fn = require("packer.util").float,
+  },
+}
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use {'wbthomason/packer.nvim', opt = true}
+  use {'wbthomason/packer.nvim'}
+  -- lsp
+  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function()
+      require('config/lsp/cmp')
+    end,
+  }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use 'onsails/lspkind.nvim'
+  use {
+    'williamboman/mason.nvim',
+    config = function()
+      require("mason").setup()
+    end,
+  }
+  use {
+    'williamboman/mason-lspconfig.nvim',
+    config = function()
+      require('config/lsp/mason-lspconfig')
+    end,
+  }
+  use {
+    'windwp/nvim-autopairs',
+    config = function() 
+      require('config/autopairs') 
+    end
+  }
+  -- appearence
   local colorscheme = "nightfox.nvim"
   use ({ 
     'EdenEast/nightfox.nvim',
@@ -26,18 +79,42 @@ return require('packer').startup(function(use)
   use {
     'akinsho/bufferline.nvim',
     tag = "v3.*", 
-    requires = 'kyazdani42/nvim-web-devicons'
+    after = colorscheme,
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('config/bufferline')
+    end,
   }
-  use {'nvim-treesitter/nvim-treesitter', run = ":TSUpdate"}
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('config/indent-blankline')
+    end,
+  }
+  -- treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ":TSUpdate",
+    config = function()
+      require('config/treesitter')
+    end,
+  }
+  use 'p00f/nvim-ts-rainbow'
+  -- filer
   use {
     "nvim-neo-tree/neo-tree.nvim",
+    event = 'VimEnter',
     branch = "main",
     requires = { 
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
-    }
+    },
+    config = function()
+      require('config/neo-tree')
+    end,
   }
+  -- fuzzy finder
   use {
     'nvim-telescope/telescope.nvim', 
     tag = '0.1.0',
@@ -47,4 +124,8 @@ return require('packer').startup(function(use)
     end,
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
