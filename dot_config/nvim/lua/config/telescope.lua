@@ -4,8 +4,8 @@ require('telescope').setup({
   defaults = {
     sorting_strategy = 'ascending',
     file_ignore_patterns = { "node_modules/*" },
-    file_sorter = require("telescope.sorters").get_fuzzy_file,
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    -- file_sorter = require("telescope.sorters").get_fuzzy_file,
+    -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     set_env = { ["COLORTERM"] = "truecolor" },
     dynamic_preview_title = true,
     border = {},
@@ -50,5 +50,4 @@ require('telescope').setup({
   },
 })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
+vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope frecency<cr>' , {})

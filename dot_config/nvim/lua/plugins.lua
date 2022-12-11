@@ -87,8 +87,15 @@ return require('packer').startup(function(use)
   }
   use {
     'lukas-reineke/indent-blankline.nvim',
+    event = {'VimEnter'},
     config = function()
       require('config/indent-blankline')
+    end,
+  }
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require"fidget".setup{}
     end,
   }
   -- treesitter
@@ -123,6 +130,14 @@ return require('packer').startup(function(use)
       require('config/telescope')
     end,
     requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use {
+    'nvim-telescope/telescope-frecency.nvim',
+    after = colorscheme,
+    config = function()
+      require"telescope".load_extension("frecency")
+    end,
+    requires = {"kkharji/sqlite.lua"}
   }
 
   if packer_bootstrap then
