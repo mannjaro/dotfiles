@@ -13,46 +13,39 @@ wezterm.on('update-right-status', function(window, pane)
   })
 end)
 
--- The filled in variant of the < symbol
-local SOLID_LEFT_ARROW = utf8.char(0xe0b6)
 
--- The filled in variant of the > symbol
-local SOLID_RIGHT_ARROW = utf8.char(0xe0b4)
+-- wezterm.on(
+--   'format-tab-title',
+--   function(tab, tabs, panes, config, hover, max_width)
+--     local edge_background = '#0b0022'
+--     local background = '#1b1032'
+--     local foreground = '#808080'
 
-wezterm.on(
-  'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
-    local edge_background = '#0b0022'
-    local background = '#1b1032'
-    local foreground = '#808080'
+--     if tab.is_active then
+--       background = '#5b5052'
+--       foreground = '#c0c0c0'
+--     elseif hover then
+--       background = '#3b3052'
+--       foreground = '#909090'
+--     end
 
-    if tab.is_active then
-      background = '#5b5052'
-      foreground = '#c0c0c0'
-    elseif hover then
-      background = '#3b3052'
-      foreground = '#909090'
-    end
+--     local edge_foreground = background
 
-    local edge_foreground = background
+--     -- ensure that the titles fit in the available space,
+--     -- and that we have room for the edges.
+--     local title = tab.active_pane.title
 
-    -- ensure that the titles fit in the available space,
-    -- and that we have room for the edges.
-    local title = tab.active_pane.title
-
-    return {
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = edge_foreground } },
-      { Text = SOLID_LEFT_ARROW },
-      { Background = { Color = background } },
-      { Foreground = { Color = foreground } },
-      { Text = title },
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = edge_foreground } },
-      { Text = SOLID_RIGHT_ARROW },
-    }
-  end
-)
+--     return {
+--       { Background = { Color = edge_background } },
+--       { Foreground = { Color = edge_foreground } },
+--       { Background = { Color = background } },
+--       { Foreground = { Color = foreground } },
+--       { Text = title },
+--       { Background = { Color = edge_background } },
+--       { Foreground = { Color = edge_foreground } },
+--     }
+--   end
+-- )
 
 return {
   -- fonts
@@ -69,26 +62,18 @@ return {
     bottom = '1cell',
   },
   -- appearance
-  color_scheme = "OneHalfDark",
-  initial_cols = 160,
-  initial_rows = 50,
+  color_scheme = "duskfox",
+  initial_cols = 180,
+  initial_rows = 55,
   inactive_pane_hsb = {
 		saturation = 0.5,
 		brightness = 0.5,
 	},
+  native_macos_fullscreen_mode = true,
   tab_bar_at_bottom = true,
   use_fancy_tab_bar = false,
   -- scrollback
   scrollback_lines = 3500,
-  enable_scroll_bar = true,
-  -- multiplexing
-  ssh_domains = {
-    {
-      name = "indigo",
-      remote_address = "www.mochicat.dev",
-      username = "ubuntu",
-    },
-  },
   -- Fucntions
   --- Split pane like tmux
   leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 },
@@ -149,6 +134,11 @@ return {
       key = "w",
       mods = "CMD",
       action = act.CloseCurrentPane{confirm=true},
+    },
+    {
+      key = 'f',
+      mods = 'CMD|CTRL',
+      action = wezterm.action.ToggleFullScreen,
     },
   },
 }
