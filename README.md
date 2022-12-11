@@ -3,7 +3,7 @@
 ## Usage
 
 ```sh
-sh <(curl -s https://raw.githubusercontent.com/mannjaro/dotfiles/main/setup.sh)
+zsh -c "$(curl -#fL raw.githubusercontent.com/mannjaro/dotfiles/main/setup.sh)"
 ```
 
 ## chezmoi usage
