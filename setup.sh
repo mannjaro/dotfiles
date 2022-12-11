@@ -1,30 +1,70 @@
-#!/bin/sh
+#!/bin/bash
+LOG="${HOME}/Library/Logs/dotfiles.log"
+GITHUB_USER='mannjaro'
+GITHUB_REPO='dotfiles'
+DIR="/usr/local/opt/${GITHUB_REPO}"
 
-set -eu
+_process() {
+  echo "$(date) PROCESSING:  $@" >> $LOG
+  printf "$(tput setaf 6) %s...$(tput sgr0)\n" "$@"
+}
 
-cd ~
+_success() {
+  local message=$1
+  printf "%s✓ Success:%s\n" "$(tput setaf 2)" "$(tput sgr0) $message"
+}
 
-# Install Homebrew
-if [ ! -f /opt/homebrew/bin/brew ]
-	then
-		echo "Installing Homebrew..."
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-	else
-		echo "Homebrew already installed."
-fi
+download_dotfiles() {
+  _process "→ Creating directory at ${DIR} and setting permissions"
+  mkdir -p "${DIR}"
 
-# Install chezmoi
-if [ ! -f /opt/homebrew/bin/chezmoi ]
-	then
-		echo "Installing chezmoi..."
-		brew install chezmoi
-	else
-		echo "chezmoi already installed."
-fi
+  _process "→ Downloading repository to /tmp directory"
+  curl -#fLo /tmp/${GITHUB_REPO}.tar.gz "https://github.com/${GITHUB_USER}/${GITHUB_REPO}/tarball/main"
 
-echo "Brew install packages"
-brew bundle --global
+  _process "→ Extracting files to ${DIR}"
+  tar -zxf /tmp/${GITHUB_REPO}.tar.gz --strip-components 1 -C "${DIR}"
 
-echo "Clone dotfiles..."
-chezmoi init https://github.com/mannjaro/dotfiles && chezmoi -v apply
+  _process "→ Removing tarball from /tmp directory"
+  rm -rf /tmp/${GITHUB_REPO}.tar.gz
 
+  [[ $? ]] && _success "${DIR} created, repository downloaded and extracted"
+
+  # Change to the dotfiles directory
+  cd "${DIR}"
+}
+
+install_homebrew() {
+  if [ ! -f /opt/homebrew/bin/brew ]
+    then
+      _process "Installing Homebrew"
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    else
+      _process "Homebrew already installed"
+  fi
+  _process "→ Running brew doctor"
+  brew doctor
+  _process "brew install packages"
+  brew bundle --global
+  [[ $? ]] && _success "brew and packages installed"
+}
+
+_install_chezmoi() {
+  if [ ! -f /opt/homebrew/bin/chezmoi ]
+    then
+      echo "Installing chezmoi..."
+      brew install chezmoi
+    else
+      echo "chezmoi already installed."
+  fi
+  chezmoi init https://github.com/${GITHUB_USER}/${GITHUB_REPO}
+  chezmoi -v apply
+  [[ $? ]] && _success "dotfiles have copied"
+}
+
+install() {
+  download_dotfiles
+  install_homebrew
+  install_chezmoi
+}
+# execute install scripts
+install
