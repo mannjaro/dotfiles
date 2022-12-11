@@ -48,7 +48,7 @@ install_homebrew() {
   [[ $? ]] && _success "brew and packages installed"
 }
 
-_install_chezmoi() {
+install_chezmoi() {
   if [ ! -f /opt/homebrew/bin/chezmoi ]
     then
       echo "Installing chezmoi..."
@@ -56,8 +56,9 @@ _install_chezmoi() {
     else
       echo "chezmoi already installed."
   fi
-  chezmoi init https://github.com/${GITHUB_USER}/${GITHUB_REPO}
-  chezmoi -v apply
+  local prefix=$(brew --prefix)
+  ${prefix}/bin/chezmoi init https://github.com/${GITHUB_USER}/${GITHUB_REPO}
+  ${prefix}/bin/chezmoi -v apply
   [[ $? ]] && _success "dotfiles have copied"
 }
 
