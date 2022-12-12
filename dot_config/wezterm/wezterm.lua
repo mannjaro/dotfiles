@@ -1,51 +1,8 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 
-wezterm.on('update-right-status', function(window, pane)
-  local date = wezterm.strftime '%a %H:%M'
-  local bat = ''
-  for _, b in ipairs(wezterm.battery_info()) do
-    bat = string.format('%.0f%%', b.state_of_charge * 100)
-  end
-
-  window:set_right_status(wezterm.format {
-    { Text = " " .. date .. ' - ' .. bat .. " " },
-  })
-end)
-
-
--- wezterm.on(
---   'format-tab-title',
---   function(tab, tabs, panes, config, hover, max_width)
---     local edge_background = '#0b0022'
---     local background = '#1b1032'
---     local foreground = '#808080'
-
---     if tab.is_active then
---       background = '#5b5052'
---       foreground = '#c0c0c0'
---     elseif hover then
---       background = '#3b3052'
---       foreground = '#909090'
---     end
-
---     local edge_foreground = background
-
---     -- ensure that the titles fit in the available space,
---     -- and that we have room for the edges.
---     local title = tab.active_pane.title
-
---     return {
---       { Background = { Color = edge_background } },
---       { Foreground = { Color = edge_foreground } },
---       { Background = { Color = background } },
---       { Foreground = { Color = foreground } },
---       { Text = title },
---       { Background = { Color = edge_background } },
---       { Foreground = { Color = edge_foreground } },
---     }
---   end
--- )
+require("config/right-status").setup()
+require('config/tab-title').setup()
 
 return {
   -- fonts
@@ -61,8 +18,10 @@ return {
     top = '1cell',
     bottom = '1cell',
   },
+  window_decorations = "RESIZE",
   -- appearance
-  color_scheme = "duskfox",
+  tab_max_width = 60,
+  color_scheme = 'duskfox',
   initial_cols = 180,
   initial_rows = 55,
   inactive_pane_hsb = {
@@ -128,7 +87,7 @@ return {
     {
       key = ",",
       mods = "CMD",
-      action = act.SendString "code $HOME/.config/wezterm/wezterm.lua \x0D",
+      action = act.SendString "nvim $HOME/.config/wezterm/wezterm.lua \x0D",
     },
     {
       key = "w",
