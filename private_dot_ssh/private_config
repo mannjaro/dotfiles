@@ -2,30 +2,18 @@ Host indigo
     Hostname www.mochicat.dev 
     User ubuntu
     Port 22
-    IdentityFile ~/.ssh/manjaro_rsa
-
-Host rpi
-    HostName rpi.local
-    User pi
-    Port 22
-    IdentityFile ~/.ssh/manjaro_rsa
-
-Host wsl
-    HostName 192.168.11.15
-    User manjaro
-    Port 22222
-    IdentityFile ~/.ssh/manjaro_rsa
+    IdentityFile ~/.ssh/id_ed25519
 
 Host github.com
     HostName github.com
     User git
     IdentityFile ~/.ssh/github
 
-Host fab_web
+Host kit-wp
     HostName www.monodukuri.kit.ac.jp
     User mannjaro
     Port 22
-    IdentityFile ~/.ssh/manjaro_rsa
+    IdentityFile ~/.ssh/id_ed25519
 
 Host puffer
     HostName se.is.kit.ac.jp
@@ -67,7 +55,7 @@ Host sel # ← just an identifier
 Host *
     User t-zukawa
     ServerAliveInterval 300
-    IdentityFile ~/.ssh/sl_key
+    IdentityFile ~/.ssh/soflab
     # Macの場合は以下の記述をしておくことでssh keyのパスフレーズ入力を初回以外スキップできる
     UseKeychain yes
     AddKeysToAgent yes
