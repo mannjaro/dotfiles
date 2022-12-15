@@ -10,6 +10,7 @@ end
 -- Set up nvim-cmp.
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local lspkind = require('lspkind')
+vim.g.completeopt = 'menu,menuone,noselect,noinsert'
 local cmp = require'cmp'
 
 cmp.setup({
@@ -54,13 +55,23 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help'},
+    { name = 'path' },
+    { name = 'nvim_lua' },
     { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
-    { name = 'nvim_lsp_signature_help'}
   }, {
     { name = 'buffer' },
+  },{
+      name = 'spell',
+      option = {
+        keep_all_entries = false,
+        enable_in_context = function()
+          return true
+        end,
+      }
   }),
   formatting = {
     format = lspkind.cmp_format({

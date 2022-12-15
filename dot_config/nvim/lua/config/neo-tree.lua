@@ -45,6 +45,7 @@ require('neo-tree').setup({
       width = 40,
       mappings = {
         ["<2-LeftMouse>"] = "open",
+        ["<esc>"] = "close_window"
       },
     },
   },

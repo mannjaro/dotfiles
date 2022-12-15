@@ -36,6 +36,8 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'f3fora/cmp-spell'
   use 'onsails/lspkind.nvim'
   use {
     'williamboman/mason.nvim',
@@ -50,11 +52,31 @@ return require('packer').startup(function(use)
     end,
   }
   use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('config/lsp/null-ls')
+    end,
+  }
+  use {
     'windwp/nvim-autopairs',
     config = function() 
       require('config/autopairs') 
+    end,
+  }
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+      vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle workspace_diagnostics<cr>", {silent = true, noremap = true})
     end
   }
+  use 'folke/lsp-colors.nvim'
   -- appearence
   local colorscheme = "nightfox.nvim"
   use ({ 
@@ -98,10 +120,14 @@ return require('packer').startup(function(use)
       require"fidget".setup{}
     end,
   }
+  use 'unblevable/quick-scope'
   -- treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ":TSUpdate",
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
     config = function()
       require('config/treesitter')
     end,
@@ -125,7 +151,7 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', 
     tag = '0.1.0',
-    after = colorscheme,
+    after = {colorscheme},
     config = function()
       require('config/telescope')
     end,
@@ -133,11 +159,27 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-telescope/telescope-frecency.nvim',
-    after = colorscheme,
+    after = {colorscheme, 'telescope.nvim'},
     config = function()
       require"telescope".load_extension("frecency")
     end,
     requires = {"kkharji/sqlite.lua"}
+  }
+  -- markdown-preview
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+    config = function()
+      require('config/markdown-preview')
+    end,
+  })
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    after = colorscheme,
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
   }
 
   if packer_bootstrap then

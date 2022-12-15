@@ -48,6 +48,17 @@ require('telescope').setup({
       },
     },
   },
+  extensions = {
+    frecency = {
+      ignore_patterns = { "*.git/*", "*/tmp/*", "*/node_modules/*" },
+      db_safe_mode = false,
+      auto_validate = true,
+    }
+  },
 })
 
-vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope frecency<cr>' , {})
+vim.keymap.set("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {noremap = true, silent = true})
