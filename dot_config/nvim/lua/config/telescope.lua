@@ -3,7 +3,17 @@ local actions = require('telescope.actions')
 require('telescope').setup({
   defaults = {
     sorting_strategy = 'ascending',
-    file_ignore_patterns = { "node_modules/*" },
+    file_ignore_patterns = { 
+      "node_modules/*",
+      ".venv/*",
+      ".mypy_cache/*",
+      "__pycache__/*",
+      "debug/*",
+      "*.dll",
+      "*.rs.bk",
+      "*.png",
+      "*.jpg",
+    },
     -- file_sorter = require("telescope.sorters").get_fuzzy_file,
     -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     set_env = { ["COLORTERM"] = "truecolor" },

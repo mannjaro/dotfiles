@@ -181,6 +181,7 @@ return require('packer').startup(function(use)
         require'alpha'.setup(require'alpha.themes.dashboard'.config)
     end
   }
+  use 'rhysd/committia.vim'
 
   if packer_bootstrap then
     require('packer').sync()
