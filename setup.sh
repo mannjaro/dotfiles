@@ -49,25 +49,35 @@ install_homebrew() {
 }
 
 install_chezmoi() {
-  if [ ! -f /opt/homebrew/bin/chezmoi ]
+  if [ "$1" = 'Darwin' ];
   then
-    echo "Installing chezmoi..."
-    brew install chezmoi
+    if [ ! -f /opt/homebrew/bin/chezmoi ]
+    then
+      echo "Installing chezmoi..."
+      brew install chezmoi
+    else
+      echo "chezmoi already installed."
+    fi
+    local prefix=$(brew --prefix)
+    ${prefix}/bin/chezmoi init https://github.com/${GITHUB_USER}/${GITHUB_REPO}
+    ${prefix}/bin/chezmoi -v apply
+    [[ $? ]] && _success "dotfiles have copied"
   else
-    echo "chezmoi already installed."
+    if [ -f /usr/bin/curl ]
+    then
+      sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ${GITHUB_USER}
+    fi
+    echo "curl not installed"
   fi
-  local prefix=$(brew --prefix)
-  ${prefix}/bin/chezmoi init https://github.com/${GITHUB_USER}/${GITHUB_REPO}
-  ${prefix}/bin/chezmoi -v apply
-  [[ $? ]] && _success "dotfiles have copied"
 }
 
 install() {
-  if [ "$(uname)" = 'Darwin' ];
+  unamestr=$(uname)
+  if [ "$unamestr" = 'Darwin' ];
   then
     install_homebrew
   fi
-  install_chezmoi
+  install_chezmoi $unamestr
 }
-# execute install scripts
+
 install
