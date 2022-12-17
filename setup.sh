@@ -35,11 +35,11 @@ download_dotfiles() {
 
 install_homebrew() {
   if [ ! -f /opt/homebrew/bin/brew ]
-    then
-      _process "Installing Homebrew"
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    else
-      _process "Homebrew already installed"
+  then
+    _process "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  else
+    _process "Homebrew already installed"
   fi
   _process "→ Running brew doctor"
   brew doctor
@@ -50,11 +50,11 @@ install_homebrew() {
 
 install_chezmoi() {
   if [ ! -f /opt/homebrew/bin/chezmoi ]
-    then
-      echo "Installing chezmoi..."
-      brew install chezmoi
-    else
-      echo "chezmoi already installed."
+  then
+    echo "Installing chezmoi..."
+    brew install chezmoi
+  else
+    echo "chezmoi already installed."
   fi
   local prefix=$(brew --prefix)
   ${prefix}/bin/chezmoi init https://github.com/${GITHUB_USER}/${GITHUB_REPO}
@@ -63,8 +63,10 @@ install_chezmoi() {
 }
 
 install() {
-  download_dotfiles
-  install_homebrew
+  if [ "$(uname)" = 'Darwin' ];
+  then
+    install_homebrew
+  fi
   install_chezmoi
 }
 # execute install scripts
