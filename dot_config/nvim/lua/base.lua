@@ -46,3 +46,7 @@ vim.g.loaded_tarPlugin          = 1
 vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.loaded_zipPlugin          = 1
 vim.g.skip_loading_mswin        = 1
+
+vim.cmd("autocmd TermOpen * startinsert")
+vim.cmd('autocmd TermOpen * setlocal nonumber')
+vim.cmd('command! -nargs=* T split | wincmd j | resize 20 | terminal <args>')
