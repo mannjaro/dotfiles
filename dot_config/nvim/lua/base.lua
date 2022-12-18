@@ -6,7 +6,7 @@ set.updatetime = 300
 set.timeoutlen = 1000
 set.swapfile = false
 
-set.virtualedit = onemore
+set.virtualedit = 'onemore'
 
 set.number = true
 --set.cursorline = true
@@ -25,7 +25,7 @@ set.hlsearch = true
 set.scrolloff = 3
 set.sidescrolloff = 3
 
-set.clipboard:append({unnamedeplus = true})
+set.clipboard = {"unnamed", "unnamedplus"}
 set.mouse = 'a'
 
 vim.g.did_install_default_menus = 1
