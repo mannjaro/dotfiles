@@ -5,3 +5,5 @@
 	root = /Users/t-zukawa/src
 [init]
 	defaultBranch = main
+[core]
+	editor = nvim
