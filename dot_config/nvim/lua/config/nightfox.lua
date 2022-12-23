@@ -4,4 +4,4 @@ nightfox.setup({
 		dim_inactive = true, -- Non focused panes set to alternative background
 	},
 })
-vim.cmd('colorscheme duskfox')
+vim.cmd('colorscheme nordfox')
