@@ -28,17 +28,19 @@ return require('packer').startup(function(use)
     config = function()
       require('config/lsp/cmp')
     end,
+    requires = {
+       'hrsh7th/cmp-nvim-lsp',
+       'hrsh7th/cmp-buffer',
+       'hrsh7th/cmp-path',
+       'hrsh7th/cmp-cmdline',
+       'hrsh7th/cmp-vsnip',
+       'hrsh7th/vim-vsnip',
+       'hrsh7th/cmp-nvim-lsp-signature-help',
+       'hrsh7th/cmp-nvim-lua',
+       'f3fora/cmp-spell',
+       'onsails/lspkind.nvim',
+    }
   }
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'f3fora/cmp-spell'
-  use 'onsails/lspkind.nvim'
   use {
     'williamboman/mason.nvim',
     config = function()
@@ -77,6 +79,13 @@ return require('packer').startup(function(use)
     end
   }
   use 'folke/lsp-colors.nvim'
+  -- comment
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('config/Comment')
+    end,
+  }
   -- appearence
   local colorscheme = "nightfox.nvim"
   use ({ 
