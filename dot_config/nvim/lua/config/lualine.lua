@@ -1,6 +1,6 @@
 require('lualine').setup({
   options = {
-    theme = 'duskfox'
+    theme = 'auto'
   }
 })
 
