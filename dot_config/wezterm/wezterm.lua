@@ -12,22 +12,25 @@ return {
     "Cica",
     "Consolas",
   },
+  -- window
   window_padding = {
     left = '2cell',
     right = '2cell',
     top = '1cell',
     bottom = '1cell',
   },
-  window_decorations = "RESIZE",
-  -- appearance
-  tab_max_width = 60,
-  color_scheme = 'duskfox',
   initial_cols = 180,
   initial_rows = 55,
+
   inactive_pane_hsb = {
 		saturation = 0.5,
 		brightness = 0.5,
 	},
+
+  window_decorations = "RESIZE",
+  -- appearance
+  tab_max_width = 60,
+  color_scheme = 'nordfox',
   native_macos_fullscreen_mode = true,
   tab_bar_at_bottom = true,
   use_fancy_tab_bar = false,
@@ -97,7 +100,12 @@ return {
     {
       key = 'f',
       mods = 'CMD|CTRL',
-      action = wezterm.action.ToggleFullScreen,
+      action = act.ToggleFullScreen,
     },
+    {
+      key = 'v',
+      mods = 'CMD',
+      action = act.Paste,
+    }
   },
 }
