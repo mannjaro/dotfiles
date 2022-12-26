@@ -9,6 +9,7 @@ local sources = {
     extra_args = {'--line-length=120'}
   }),
   null_ls.builtins.formatting.isort,
+  null_ls.builtins.code_actions.gitsigns,
 }
 
 local on_attach = function()

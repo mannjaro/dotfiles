@@ -62,6 +62,21 @@ require("lazy").setup({
     config = true,
   },
   {
+    "petertriho/nvim-scrollbar",
+    event = "VimEnter",
+    config = true,
+  },
+  {
+    "kevinhwang91/nvim-hlslens",
+    event = "SearchWrapped",
+    config = function()
+      -- require('hlslens').setup() is not required
+      require("scrollbar.handlers.search").setup({
+          -- hlslens config overrides
+      })
+    end,
+  },
+  {
     "j-hui/fidget.nvim",
     event = "VimEnter",
     config = true,
@@ -119,6 +134,16 @@ require("lazy").setup({
       require('rc/null-ls')
     end,
   },
+  -- Git
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "InsertEnter",
+    config = function()
+      require('gitsigns').setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end
+  },
+
   -- Tools
   {
     "dstein64/vim-startuptime",
@@ -150,7 +175,7 @@ require("lazy").setup({
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = true,
     init = function()
       vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle("workspace_diagnostics") end, {silent = true, noremap = true})
