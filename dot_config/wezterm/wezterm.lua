@@ -30,7 +30,7 @@ return {
   window_decorations = "RESIZE",
   -- appearance
   tab_max_width = 60,
-  color_scheme = 'nordfox',
+  color_scheme = 'tokyonight',
   native_macos_fullscreen_mode = true,
   tab_bar_at_bottom = true,
   use_fancy_tab_bar = false,
