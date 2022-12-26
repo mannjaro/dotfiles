@@ -22,10 +22,15 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    version = "0.8.1",
     event = "BufReadPre",
     build = ':TSUpdate',
     dependencies = {
       "p00f/nvim-ts-rainbow",
+      {
+        "yioneko/nvim-yati",
+        version = "*",
+      },
     },
     config = function()
       require("rc/treesitter")
@@ -33,6 +38,7 @@ require("lazy").setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    version = "2.20.2",
     event = "BufReadPre",
     config = function()
       require("rc/indent-blankline")
@@ -77,11 +83,16 @@ require("lazy").setup({
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lua",
       "onsails/lspkind.nvim",
+      "hrsh7th/cmp-emoji",
       {
         "windwp/nvim-autopairs",
         config = function() 
           require('rc/autopairs') 
         end,
+      },
+      {
+        "windwp/nvim-ts-autotag",
+        config = true,
       },
     },
     config = function()
@@ -137,11 +148,21 @@ require("lazy").setup({
     end,
   },
   {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = true,
+    init = function()
+      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle("workspace_diagnostics") end, {silent = true, noremap = true})
+    end,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     tag = "0.1.0",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
     },
     init = function()
       local opts = { noremap = true, silent = true }
@@ -151,8 +172,11 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>fg", function()
         require("telescope.builtin").live_grep()
       end, opts)
-      vim.keymap.set("n", "<leader>fb", function()
+      vim.keymap.set("n", "<leader>bf", function()
         require("telescope.builtin").buffers()
+      end, opts)
+      vim.keymap.set("n", "<leader>fb", function()
+        require("telescope").extensions.file_browser.file_browser()
       end, opts)
     end,
     config = function()

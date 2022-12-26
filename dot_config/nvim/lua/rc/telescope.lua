@@ -1,5 +1,7 @@
 local action_layout = require('telescope.actions.layout')
 local actions = require('telescope.actions')
+local fb_actions = require "telescope".extensions.file_browser.actions
+
 require('telescope').setup({
   defaults = {
     sorting_strategy = 'ascending',
@@ -58,14 +60,28 @@ require('telescope').setup({
       },
     },
   },
-  -- extensions = {
+  extensions = {
+    file_browser = {
+      -- theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+          ["<C-c>"] = fb_actions.create,
+
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
   --   frecency = {
   --     ignore_patterns = { "*.git/*", "*/tmp/*", "*/node_modules/*" },
   --     db_safe_mode = false,
   --     auto_validate = true,
-  --   }
-  -- },
+  --   },
 })
 
-
-
+require("telescope").load_extension "file_browser"
