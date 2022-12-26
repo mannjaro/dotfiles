@@ -1,5 +1,7 @@
 local action_layout = require('telescope.actions.layout')
 local actions = require('telescope.actions')
+local fb_actions = require "telescope".extensions.file_browser.actions
+
 require('telescope').setup({
   defaults = {
     sorting_strategy = 'ascending',
@@ -59,16 +61,27 @@ require('telescope').setup({
     },
   },
   extensions = {
-    frecency = {
-      ignore_patterns = { "*.git/*", "*/tmp/*", "*/node_modules/*" },
-      db_safe_mode = false,
-      auto_validate = true,
-    }
+    file_browser = {
+      -- theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+          ["<C-c>"] = fb_actions.create,
+
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
   },
+  --   frecency = {
+  --     ignore_patterns = { "*.git/*", "*/tmp/*", "*/node_modules/*" },
+  --     db_safe_mode = false,
+  --     auto_validate = true,
+  --   },
 })
 
-vim.keymap.set("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>", {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", {noremap = true, silent = true})
-vim.keymap.set('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {noremap = true, silent = true})
+require("telescope").load_extension "file_browser"
