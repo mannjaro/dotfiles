@@ -5,6 +5,11 @@ require("config/right-status").setup()
 require('config/tab-title').setup()
 
 return {
+  colors = {
+    tab_bar = {
+      background = "#14141D"
+    },
+  },
   -- fonts
   font_size = 13,
   font = wezterm.font_with_fallback {
