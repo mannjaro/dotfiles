@@ -3,7 +3,7 @@ local set = vim.opt
 set.backup = false 
 set.writebackup = false
 set.updatetime = 300
-set.timeoutlen = 1000
+set.timeoutlen = 500
 set.swapfile = false
 
 set.virtualedit = 'onemore'

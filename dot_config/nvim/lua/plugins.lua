@@ -68,7 +68,7 @@ require("lazy").setup({
   },
   {
     "kevinhwang91/nvim-hlslens",
-    event = "SearchWrapped",
+    event = "BufReadPost",
     config = function()
       -- require('hlslens').setup() is not required
       require("scrollbar.handlers.search").setup({
@@ -80,6 +80,12 @@ require("lazy").setup({
     "j-hui/fidget.nvim",
     event = "VimEnter",
     config = true,
+  },
+  {
+    "glepnir/dashboard-nvim",
+    config = function()
+      require("rc/dashboard")
+    end,
   },
   -- LSP
   {
@@ -173,12 +179,28 @@ require("lazy").setup({
     end,
   },
   {
+    "akinsho/toggleterm.nvim",
+    cmd = "ToggleTerm",
+    version = "*",
+    init = function()
+      local opt = {silent = true, noremap = true}
+      vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>" , opt)
+    end,
+    config = true,
+  },
+  {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
     dependencies = "kyazdani42/nvim-web-devicons",
     config = true,
     init = function()
       vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle("workspace_diagnostics") end, {silent = true, noremap = true})
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("rc/which-key")
     end,
   },
   {
