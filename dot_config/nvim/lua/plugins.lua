@@ -16,9 +16,11 @@ require("lazy").setup({
   -- Appearance
   {
     "folke/tokyonight.nvim",
-    config = function()
-      vim.cmd("colorscheme tokyonight")
-    end,
+    lazy = true,
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = true,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -63,7 +65,7 @@ require("lazy").setup({
   },
   {
     "petertriho/nvim-scrollbar",
-    event = "VimEnter",
+    event = "BufReadPost",
     config = true,
   },
   {
@@ -91,7 +93,7 @@ require("lazy").setup({
   {
     "hrsh7th/nvim-cmp",
     -- load cmp on InsertEnter
-    event = { "InsertEnter" },
+    -- event = { "InsertEnter" },
     -- these dependencies will only be loaded when cmp loads
     -- dependencies are always lazy-loaded unless specified otherwise
     dependencies = {
@@ -131,6 +133,28 @@ require("lazy").setup({
       },
      "folke/lsp-colors.nvim",
     }
+  },
+  {
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    cmd = "Lspsaga",
+    config = function()
+      local saga = require("lspsaga")
+      saga.init_lsp_saga({
+      -- your configuration
+      border_style = "single",
+      symbol_in_winbar = {
+        enable = true,
+      },
+      code_action_lightbulb = {
+        enable = true,
+      },
+      show_outline = {
+        win_width = 50,
+        auto_preview = false,
+      },
+    })
+    end,
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
@@ -251,3 +275,4 @@ require("lazy").setup({
 })
 
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
+vim.cmd("colorscheme duskfox")

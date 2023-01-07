@@ -20,7 +20,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable = { "python" },
 
     -- Whether to enable lazy mode (recommend to enable this if bad indent happens frequently)
-    default_lazy = true,
+    default_lazy = false,
 
     -- Determine the fallback method used when we cannot calculate indent by tree-sitter
     --   "auto": fallback to vim auto indent
