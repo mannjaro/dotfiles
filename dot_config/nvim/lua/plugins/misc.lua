@@ -9,5 +9,14 @@ return {
     "dstein64/vim-startuptime",
     -- lazy-load on a command
     cmd = "StartupTime",
+  },
+  {
+    "voldikss/vim-floaterm",
+    keys = {
+      { "<C-k>", "<cmd>FloatermToggle<cr>" }
+    },
+    config = function()
+      vim.keymap.set("t", "<C-k>", "<cmd>FloatermToggle<cr>")
+    end,
   }
 }
