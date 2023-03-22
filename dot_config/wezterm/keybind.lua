@@ -67,7 +67,7 @@ return {
     {
       key = "v",
       mods = "CMD",
-      action = act.Paste,
+      action = act.PasteFrom 'Clipboard',
     },
   },
 }
