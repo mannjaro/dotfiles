@@ -1,9 +1,0 @@
-[user]
-	name = Takayuki Zukawa
-	email = zk.takayuki@gmail.com
-[ghq]
-	root = /Users/t-zukawa/src
-[init]
-	defaultBranch = main
-[core]
-	editor = nvim
