@@ -1,21 +1,27 @@
-local wezterm = require("wezterm")
+local wezterm = require 'wezterm'
 
-local keybind = require("keybind")
-require("format")
-require("status")
+local keybind = require 'keybind'
+local config = {}
 
-return {
-  color_scheme = "Catppuccin Mocha",
-  use_fancy_tab_bar = true,
-  -- disable_default_key_bindings = true,
-  font_size = 13.0,
-  window_decorations = 'RESIZE',
-  font = wezterm.font("UDEV Gothic 35NF"),
-  initial_cols = 180,
-  initial_rows = 55,
-  tab_max_width = 60,
-  native_macos_fullscreen_mode = true,
-  leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
-  keys = keybind.keys,
-  status_update_interval = 1000,
-}
+if wezterm.config_builder then
+  config = wezterm.config_builder()
+end
+
+config.color_scheme = 'nightfox'
+config.tab_bar_at_bottom = true
+config.window_decorations = 'RESIZE'
+config.use_ime = false 
+config.use_fancy_tab_bar = false
+config.tab_max_width = 50
+
+config.font = wezterm.font 'UDEV Gothic 35NF'
+config.font_size = 14.0
+
+config.initial_cols = 140
+config.initial_rows = 48
+config.audible_bell = 'Disabled'
+
+
+keybind.apply_to_config(config)
+
+return config

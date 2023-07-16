@@ -6,9 +6,9 @@ set.number = true
 -- set.ambiwidth = 'double'
 set.wrap = true
 set.pumheight = 10
-set.tabstop = 2
-set.softtabstop = 2
-set.shiftwidth = 2
+set.tabstop = 4
+set.softtabstop = 4
+set.shiftwidth = 4
 
 set.expandtab = true
 set.autoindent = true
