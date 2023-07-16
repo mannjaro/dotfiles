@@ -18,6 +18,7 @@
 
 return {
     'lukas-reineke/indent-blankline.nvim',
+    lazy = false,
     config = function()
         vim.opt.termguicolors = true
         vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
