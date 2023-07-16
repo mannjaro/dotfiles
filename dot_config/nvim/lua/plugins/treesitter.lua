@@ -56,5 +56,4 @@ return {
             },
         })
     end,
->>>>>>> b2e2ceb (Add .chezmoiignore)
 }
