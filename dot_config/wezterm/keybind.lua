@@ -36,16 +36,11 @@ function module.apply_to_config(config)
             mods = 'CMD',
             action = act.CloseCurrentTab { confirm = true }
         },
-		{
-            key = 'n',
-			mods = 'CTRL',
-			action = act.ActivateTabRelative(1)
-		},
-		{
-            key = 'b',
-			mods = 'CTRL',
-			action = act.ActivateTabRelative(-1)
-		},
+        {
+            key = 'q',
+            mods = 'CMD',
+            action = act.QuitApplication
+        },
 		{
             key = 'v',
 			mods = 'CMD',

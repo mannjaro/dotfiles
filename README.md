@@ -2,26 +2,41 @@
 
 ## Usage
 
+Install and apply dotfiles
+
 ```sh
-zsh -c "$(curl -#fL raw.githubusercontent.com/mannjaro/dotfiles/main/setup.sh)"
+$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 ```
 
-## chezmoi usage
-
-管理対象への追加
+Update from remote
 
 ```sh
-chezmoi add $file
+$ chezmoi update
 ```
 
-管理対象の編集
+### chezmoi usage
+
+Adding to the management target
 
 ```sh
-chezmoi edit $file
+$ chezmoi add $file
 ```
 
-ローカルへの適応
+Edit Managed Items
 
 ```sh
-chezmoi apply
+$ chezmoi edit $file
+```
+
+Apply to local
+
+```sh
+$ chezmoi apply
+```
+
+Apply to remote
+
+```sh
+$ git commit
+$ git push
 ```
