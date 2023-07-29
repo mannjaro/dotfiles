@@ -12,6 +12,8 @@ config.tab_bar_at_bottom = true
 config.window_decorations = 'RESIZE'
 config.use_ime = false 
 config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+
 config.tab_max_width = 50
 
 config.font = wezterm.font 'UDEV Gothic 35NF'

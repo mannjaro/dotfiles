@@ -13,10 +13,10 @@ return {
   {
     "voldikss/vim-floaterm",
     keys = {
-      { "<C-k>", "<cmd>FloatermToggle<cr>" }
+      { "<C-t>", "<cmd>FloatermToggle<cr>" }
     },
     config = function()
-      vim.keymap.set("t", "<C-k>", "<cmd>FloatermToggle<cr>")
+      vim.keymap.set("t", "<C-t>", "<cmd>FloatermToggle<cr>")
     end,
   }
 }
