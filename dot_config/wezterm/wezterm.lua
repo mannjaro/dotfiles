@@ -10,7 +10,8 @@ end
 config.color_scheme = 'nightfox'
 config.tab_bar_at_bottom = true
 config.window_decorations = 'RESIZE'
-config.use_ime = false 
+config.native_macos_fullscreen_mode = true
+config.use_ime = true
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 

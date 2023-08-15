@@ -13,6 +13,7 @@ return {
       "hrsh7th/vim-vsnip",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-emoji",
       "onsails/lspkind.nvim",
     },
     event = "InsertEnter",
@@ -77,6 +78,7 @@ return {
           { name = "path" },
           { name = "nvim_lsp_signature_help" },
           { name = "nvim_lua" },
+          { name = "emoji" },
         },{
           { name = "buffer"},
         }),
