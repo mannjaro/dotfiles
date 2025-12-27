@@ -1,0 +1,45 @@
+" === 基本設定 ===
+set nocompatible
+set encoding=utf-8
+set fileencodings=utf-8,sjis,euc-jp
+set number
+set relativenumber
+set cursorline
+set showcmd
+set wildmenu
+set clipboard=unnamedplus
+
+" === インデント ===
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set smartindent
+
+" === 検索 ===
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" === 操作感 ===
+set mouse=a
+set splitright
+set splitbelow
+set scrolloff=8
+
+" === 高速化 ===
+set updatetime=300
+set lazyredraw
+
+syntax on
+
+" jjでESC
+inoremap jj <Esc>
+
+" 保存を楽に
+nnoremap <Space>w :w<CR>
+nnoremap <Space>q :q<CR>
+
+" ハイライト解除
+nnoremap <Esc><Esc> :nohlsearch<CR>
+

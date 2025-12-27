@@ -1,0 +1,60 @@
+# 長いコマンドのハイライトを制限
+ZSH_HIGHLIGHT_MAXLENGTH=300  
+
+# AWS
+
+export AWS_PROFILE=mandarium-admin
+export CLAUDE_CODE_USE_BEDROCK=1
+
+# completion
+autoload -Uz compinit
+compinit
+
+# prompt
+eval "$(starship init zsh)"
+
+# history
+eval "$(atuin init zsh)"
+
+# fzf
+source <(fzf --zsh)
+
+# env manager
+eval "$(mise activate zsh)"
+
+# smart cd
+eval "$(zoxide init zsh)"
+
+# mise
+eval "$(mise activate zsh)"
+
+# alias
+alias ls="eza --icons"
+alias ll="eza -lah"
+alias cat="bat"
+
+# exports
+export XDG_CONFIG_HOME=~/.config
+
+# ghq-fzf
+ghq-fzf() {
+  local repo
+  repo=$(ghq list -p | fzf \
+    --preview 'ls {}/README* 2>/dev/null | head -n 1 | xargs -I{} sed -n "1,80p" {}' \
+    --preview-window right:60%)
+  [[ -n "$repo" ]] && cd "$repo"
+}
+
+zle -N ghq-fzf
+bindkey '^g' ghq-fzf
+
+source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+my-fzf-tab() {
+  functions[compadd]=$functions[-ftb-compadd]
+  zle fzf-tab-complete
+}
+zle -N my-fzf-tab
+bindkey "^I" my-fzf-tab
+
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
