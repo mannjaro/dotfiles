@@ -13,6 +13,7 @@ return {
 		indent = { enabled = true },
 		input = { enabled = true },
 		picker = { enabled = true },
+		lazygit = { enabled = true },
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
@@ -76,6 +77,13 @@ return {
 			end,
 			desc = "Terminal",
 			mode = { "n", "t" },
+		},
+		{
+			"<leader>gg",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "Lazygit",
 		},
 	},
 }
