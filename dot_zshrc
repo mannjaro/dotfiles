@@ -1,13 +1,11 @@
 # 長いコマンドのハイライトを制限
 ZSH_HIGHLIGHT_MAXLENGTH=300  
 
-# AWS
-export AWS_PROFILE=mandarium-admin
-
 # completion
 autoload -Uz compinit
 compinit
 
+# syntax highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # prompt
