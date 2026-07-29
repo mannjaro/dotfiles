@@ -2,36 +2,22 @@
 ZSH_HIGHLIGHT_MAXLENGTH=300  
 
 # AWS
-
 export AWS_PROFILE=mandarium-admin
-export CLAUDE_CODE_USE_BEDROCK=1
 
 # completion
 autoload -Uz compinit
 compinit
 
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # prompt
 eval "$(starship init zsh)"
 
 # history
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # fzf
 source <(fzf --zsh)
-
-# env manager
-eval "$(mise activate zsh)"
-
-# smart cd
-eval "$(zoxide init zsh)"
-
-# mise
-eval "$(mise activate zsh)"
-
-# alias
-alias ls="eza --icons"
-alias ll="eza -lah"
-alias cat="bat"
 
 # exports
 export XDG_CONFIG_HOME=~/.config
@@ -47,14 +33,3 @@ ghq-fzf() {
 
 zle -N ghq-fzf
 bindkey '^g' ghq-fzf
-
-source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
-my-fzf-tab() {
-  functions[compadd]=$functions[-ftb-compadd]
-  zle fzf-tab-complete
-}
-zle -N my-fzf-tab
-bindkey "^I" my-fzf-tab
-
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
