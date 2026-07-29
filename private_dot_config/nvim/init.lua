@@ -18,7 +18,6 @@ vim.o.pumborder = 'rounded'
 vim.o.pummaxwidth = 50
 
 vim.o.number = true
-vim.o.relativenumber = true
 vim.o.signcolumn = 'yes'
 vim.o.cursorline = true
 vim.o.expandtab = true
