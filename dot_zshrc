@@ -25,6 +25,11 @@ if command -v eza > /dev/null 2>&1; then
   alias ls="eza --icons auto --time-style relative -F always --hyperlink -h --git --git-repos --group-directories-first --sort=name --time-style=long-iso -i"
 fi
 
+# lazygit
+if command -v lazygit > /dev/null 2>&1; then
+  alias gg="lazygit"
+fi
+
 # prompt
 if command -v starship > /dev/null 2>&1; then
   eval "$(starship init zsh)"
