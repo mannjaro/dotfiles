@@ -1,0 +1,69 @@
+tap "getsentry/xcodebuildmcp"
+tap "steipete/tap"
+# Code searching, linting, rewriting
+brew "ast-grep"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Pyright fork with various improvements and built-in pylance features
+brew "basedpyright"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Remote repository management made easy
+brew "ghq"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Language Server for the Lua language
+brew "lua-language-server"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Terminal multiplexer
+brew "tmux"
+# Parser generator tool
+brew "tree-sitter-cli"
+# LSP wrapper for typescript extension of vscode
+brew "vtsls"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+cask "codexbar"
+cask "font-udev-gothic"
+cask "font-udev-gothic-nf"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Keyboard customiser
+cask "karabiner-elements"
+# Replacement for Docker Desktop
+cask "orbstack"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Open-source code editor
+cask "visual-studio-code"
+# Multiplayer code editor
+cask "zed"
+vscode "miguelsolorio.symbols"
+vscode "qufiwefefwoyn.kanagawa"
+vscode "vscodevim.vim"
+uv "ruff"
