@@ -1,0 +1,20 @@
+onboarding = false
+[ui.toast]
+delivery = "herdr"
+
+[ui.sound]
+enabled = false
+
+[theme]
+name = "kanagawa"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+q"
+split_vertical = "prefix+|"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+[experimental]
+pane_history = false
